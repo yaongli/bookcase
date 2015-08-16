@@ -15,34 +15,35 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(name = "bookcase_book_comment")
 public class BookComment extends IdEntity {
 	
-	@ManyToOne
-	@JoinColumn(name = "book_id")
+
 	private Book book;
-	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
+
 	private User commenter;
-	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
+
 	private Date commentDate;
 	private String content;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "reference_id")
+
 	private BookComment reference;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "book_id")
 	public Book getBook() {
 		return book;
 	}
 	public void setBook(Book book) {
 		this.book = book;
 	}
+
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	public User getCommenter() {
 		return commenter;
 	}
 	public void setCommenter(User commenter) {
 		this.commenter = commenter;
 	}
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
 	public Date getCommentDate() {
 		return commentDate;
 	}
@@ -55,6 +56,9 @@ public class BookComment extends IdEntity {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "reference_id")
 	public BookComment getReference() {
 		return reference;
 	}

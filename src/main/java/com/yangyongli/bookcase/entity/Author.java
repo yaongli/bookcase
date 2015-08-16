@@ -1,9 +1,10 @@
 package com.yangyongli.bookcase.entity;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -16,8 +17,16 @@ public class Author extends IdEntity{
 	private String orignalName;
 	private String description;
 	private String photo;
-	private List<AuthorTag> tags;
-	
+
+    /**
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name="bookcase_book_author",
+            joinColumns={@JoinColumn(name="authorId", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="bookId", referencedColumnName="id")})
+    private Set<Book> books;
+    */
+
 	public String getName() {
 		return name;
 	}
@@ -42,11 +51,5 @@ public class Author extends IdEntity{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	public List<AuthorTag> getTags() {
-		return tags;
-	}
-	public void setTags(List<AuthorTag> tags) {
-		this.tags = tags;
-	}
-	
+
 }

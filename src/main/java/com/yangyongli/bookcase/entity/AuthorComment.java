@@ -1,9 +1,7 @@
 package com.yangyongli.bookcase.entity;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 
 //JPA标识
@@ -15,12 +13,19 @@ public class AuthorComment extends IdEntity{
 	private Date commentDate;
 	private String content;
 	private AuthorComment reference;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
 	public Author getAuthor() {
 		return author;
 	}
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "commenter_id")
 	public User getCommenter() {
 		return commenter;
 	}
@@ -39,6 +44,9 @@ public class AuthorComment extends IdEntity{
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reference_id")
 	public AuthorComment getReference() {
 		return reference;
 	}

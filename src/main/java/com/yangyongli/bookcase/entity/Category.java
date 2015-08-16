@@ -7,11 +7,12 @@ import org.hibernate.validator.constraints.NotBlank;
 
 //JPA标识
 @Entity
-@Table(name = "bookcase_catagory")
-public class Catagory extends IdEntity  {
+@Table(name = "bookcase_category")
+public class Category extends IdEntity  {
 	@NotBlank
 	private String name;
 	private String description;
+
 	public String getName() {
 		return name;
 	}
